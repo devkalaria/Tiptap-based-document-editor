@@ -1,139 +1,86 @@
-🧾 Legal Document Editor
+# 🧾 Legal Document Editor
 
-A production-grade, print-accurate WYSIWYG editor for legal professionals
+*A production-grade, print-accurate WYSIWYG editor for legal professionals*
 
-A modern, distraction-free document editor built with Next.js 14 and Tiptap (ProseMirror).
-It delivers true US Letter layout fidelity, real-time pagination, and print-perfect output, making it ideal for drafting legal documents, contracts, and formal reports.
+A modern, distraction-free document editor built with **Next.js 14** and **Tiptap (ProseMirror)**.  
+It delivers **true US Letter layout fidelity**, **real-time pagination**, and **print-perfect output**, making it ideal for drafting legal documents, contracts, and formal reports.
 
-🚀 Quickstart
-1️⃣ Install dependencies
+---
+
+## 🚀 Quickstart
+
+### Install dependencies
 npm install
 
-2️⃣ Start the development server
+### Start the development server
 npm run dev
 
-3️⃣ Open the application
+### Open the application
+http://localhost:3000
 
-Navigate to:
-👉 http://localhost:3000
+---
 
-✨ Features
-📄 Pagination & Layout
+## ✨ Features
 
-True US Letter Standard
-8.5" × 11" pages with fixed 1-inch margins on all sides.
+### 📄 Pagination & Layout
+- **True US Letter Standard** — 8.5" × 11" pages with fixed 1-inch margins  
+- **Real-Time Pagination** — content flows automatically as you type or edit  
+- **Smart Paragraph Splitting** — long paragraphs split using binary search (no clipped text)  
+- **Margin-Aware Calculations** — accounts for line height, padding, and paragraph margins  
+- **Visual Page Breaks** — subtle shadows and clean page separation  
+- **Page Numbers** — bottom-center (screen-only by default)
 
-Real-Time Pagination
-Content automatically flows to the next page as you type, paste, or edit.
+---
 
-Smart Paragraph Splitting
-Long paragraphs are intelligently split across pages using binary search on character offsets—ensuring no clipped or hidden text.
+### ✍️ Rich Text Formatting
+- **Typography** — professional serif/sans-serif font stack  
+- **Headings** — H1, H2, H3  
+- **Basic Styling** — Bold, Italic, Underline  
+- **Lists** — bulleted and numbered  
+- **Text Alignment** — Left, Center, Right, Justify  
+- **Blockquotes** — styled for legal citations  
+- **History** — Undo / Redo  
+- **Placeholder** — “Start typing…” for empty documents  
 
-Margin-Aware Calculations
-Pagination accounts for:
+---
 
-Line height
+### 🛠️ Production Utilities
+- **Document Title Management** — rename directly from the header  
+- **Auto-Save**
+  - Saves content and title to localStorage  
+  - Status indicators: Saving…, Saved, Offline  
+- **Zoom Controls**
+  - 50% → 150%  
+  - Affects only editor view, not print output  
+- **Print / PDF Export**
+  - Dedicated export button  
+  - `@media print` ensures 1:1 screen-to-print accuracy  
+  - UI hidden during print  
+- **Overflow Protection**
+  - Visual warnings if content exceeds printable bounds  
 
-Padding
+---
 
-Paragraph margins (marginTop, marginBottom)
+### 💻 Technical & Developer Experience
+- **Type-Safe Codebase** — built with TypeScript  
+- **Component-Oriented Architecture** — clear separation of concerns  
+- **Custom Tiptap Extensions**
+  - `PageBreak` — visual page separation node  
+  - `Pagination` — ProseMirror plugin for layout logic  
 
-Visual Page Breaks
-Clear page separation using subtle shadows and a neutral background.
+---
 
-Page Numbers
-Displayed at the bottom-center of each page (screen-only by default, configurable for print).
+## 🏗️ Architecture
 
-✍️ Rich Text Formatting
+**Tech Stack**
+- Next.js 14 (App Router)  
+- Tiptap (ProseMirror)  
+- Tailwind CSS  
+- TypeScript  
 
-Typography
-Professional serif/sans-serif font stack optimized for long-form reading.
+---
 
-Headings
-H1, H2, and H3 support.
-
-Basic Styling
-Bold, Italic, and Underline.
-
-Lists
-Bulleted and numbered lists.
-
-Text Alignment
-Left, Center, Right, and Justify.
-
-Blockquotes
-Distinct styling for legal citations or emphasized sections.
-
-History
-Full Undo / Redo support.
-
-Placeholder
-Helpful “Start typing…” prompt for empty documents.
-
-🛠️ Production Utilities
-
-Document Title Management
-Rename documents directly from the top header bar.
-
-Auto-Save
-
-Content auto-saves to localStorage
-
-Title persistence included
-
-Real-time status indicators:
-
-Saving…
-
-Saved
-
-Offline
-
-Zoom Controls
-
-Zoom range: 50% → 150%
-
-Affects only the editor viewport (print output remains unchanged)
-
-Print / PDF Export
-
-Dedicated Print / Export PDF button
-
-@media print styles ensure 1:1 screen-to-print accuracy
-
-UI elements are hidden during print
-
-Overflow Protection
-
-Visual warnings if content exceeds printable bounds (rare due to pagination safeguards)
-
-💻 Technical & Developer Experience
-
-Type-Safe Codebase
-Built entirely with TypeScript
-
-Component-Oriented Architecture
-Clear separation between editor, toolbar, and pagination logic
-
-Custom Tiptap Extensions
-
-PageBreak: Custom node for visual page separation
-
-Pagination: ProseMirror plugin handling layout calculations
-
-🏗️ Architecture
-
-This project is built using:
-
-Next.js 14 (App Router)
-
-Tiptap (ProseMirror)
-
-Tailwind CSS
-
-TypeScript
-
-📁 Directory Structure
+## 📁 Directory Structure
 .
 ├── app/
 │   └── globals.css        # Global styles & print rules
@@ -142,59 +89,28 @@ TypeScript
 │   └── Toolbar.tsx        # Formatting toolbar
 ├── lib/
 │   ├── pagination/
-│   │   └── plugin.ts      # Pagination engine (core logic)
+│   │   └── plugin.ts      # Pagination engine
 │   └── extensions/
 │       └── PageBreak.ts   # Custom page break node
 └── README.md
 
-🔍 How Pagination Works
+---
 
-DPI Measurement
+## 🔍 How Pagination Works
+- Measures a 1-inch DOM element to calculate screen DPI  
+- Renders a true 8.5-inch wide page  
+- Calculates layout after every editor transaction  
+- Uses binary search to split overflowing content precisely  
+- Renders visual page backdrops while keeping a single editor instance  
 
-A 1-inch DOM element is measured on mount
+---
 
-Determines accurate screen DPI
+## 🤝 Contributing
+1. Fork the repository  
+2. Create a feature branch  
+3. Commit your changes  
+4. Submit a Pull Request  
 
-Allows rendering a container exactly 8.5 physical inches wide
+---
 
-Iterative Layout Calculation
-
-Pagination plugin runs after every editor transaction
-
-Measures each top-level block using:
-
-getBoundingClientRect()
-
-getComputedStyle() (to include margins)
-
-Accumulates height against available page content height
-
-Smart Splitting & Page Breaks
-
-If a block fits → it stays
-
-If a block overflows:
-
-A binary search finds the exact character offset
-
-A pageBreak node is inserted at the precise boundary
-
-Visual Reconciliation
-
-The editor remains a single continuous contenteditable
-
-Visual pages are rendered as a background layer (PageBackdrop)
-
-pageBreak nodes dynamically adjust height to align content with page boundaries
-
-Creates the illusion of discrete pages while preserving editing continuity
-
-🤝 Contributing
-
-Fork the repository
-
-Create a feature branch
-
-Commit your changes
-
-Submit a Pull Request
+*Built for the Legal Document Editor Assessment — focused on precision, usability, and production readiness.*
