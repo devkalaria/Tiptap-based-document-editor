@@ -7,6 +7,9 @@ It delivers **true US Letter layout fidelity**, **real-time pagination**, and **
 
 ---
 
+## project is live :
+https://tiptap-based-document-editor.vercel.app/
+
 ## 🚀 Quickstart
 
 ### Install dependencies
